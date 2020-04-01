@@ -6,11 +6,18 @@ const SENDPUBLICTOK = 'SENDPUBLICTOK';
 // Action Creators
 const sendPublicToken = token => ({ type: SENDPUBLICTOK, token });
 
-export const sendToken = token => {
+let axiosConfig = {
+  headers: {
+    "Access-Control-Allow-Origin": "*",
+  }
+}
+
+export const sendTok = token => {
   return async dispatch => {
     try {
-        const resp = await axios.post(`${server}/api/plaid/plaid_exchange`,{public_token: token})
-        dispatch(sendPublicToken(resp.data));
+      const resp = await axios.post(`${server}/api/plaid/plaidExchange`,{public_token: token}, axiosConfig)
+      console.log(resp)
+      dispatch(sendPublicToken(resp.data));
     } catch (err) {
       console.log('Error sending public token: ', err.message);
     }

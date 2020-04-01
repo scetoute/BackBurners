@@ -1,6 +1,3 @@
-import dataBase from './database'
-
-// register models
-import './DBObjects'
-
-export default dataBase
+const dataBase = require('./database')
+require('./Objects')
+module.exports = dataBase

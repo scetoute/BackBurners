@@ -1,5 +1,5 @@
-const Sequelize = require('sequelize')
+const Sequelize = require('sequelize').Sequelize
+const databaseName = "EarMark" + process.env.LOGNAME
+const dataBase = new Sequelize(`mysql://localhost:3000/${databaseName}`)
 
-const databaseName = earmark + Date.now()
-const dataBase = new Sequelize(process.env.DATABASE_URL || `postgres://localhost:5432/${databaseName}`, { logging: false })
 module.exports = dataBase;

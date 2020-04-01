@@ -1,21 +1,15 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import user from './user';
+import budget from './budget'
 import thunk from 'redux-thunk';
 
 const initialState = {};
 const middleWare = [thunk];
 const composeEnhancers = compose;
 
-const reducer = combineReducers({
-    user
-  });
+const reducer = combineReducers({ user, budget });
 
-const store = createStore(reducer, 
-    initialState, 
-    composeEnhancers(
-    applyMiddleware(
-        ...middleWare),
-));
+const store = createStore(reducer, initialState, composeEnhancers(applyMiddleware(...middleWare)));
 
-export const server = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'http://ear-mark.herokuapp.com';
+export const server = 'http://192.168.1.71:8080';
 export default store;

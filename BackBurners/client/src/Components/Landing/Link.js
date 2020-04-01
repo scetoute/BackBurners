@@ -1,8 +1,9 @@
 import React,{ Component } from 'react';
 import PlaidAuthenticator from 'react-native-plaid-link';
-import { View} from 'react-native';
+import { View, Button} from 'react-native';
 import { connect } from 'react-redux';
-
+import { bindActionCreators } from 'redux'
+import { sendTok } from '../../store/token'
 class Link extends Component {
     state = {
         data: {},
@@ -32,18 +33,23 @@ class Link extends Component {
     }
 
     renderDetails() {
-        alert(JSON.stringify(this.state.data))
+        this.props.sendTok(this.state.data.metadata.public_token);
+        alert(this.state.status)
         return(
-            <View></View>
+            <View>
+                <Text>Setup Budget</Text>
+                <Button title={'Setup Your Budget'} onPress={() => this.props.navigation.navigate('BudgetSetUp', { title: 'BudgetSetup' })}>
+                    Set Up!
+                </Button>
+            </View>
         );
     }
 }
 
 const mapDispatch = dispatch => {
-    return {
-      // rename to same thing - shorthand
-      // sendToken: token => dispatch(sendToken(token))
-    };
+    return bindActionCreators({
+        sendTok
+    }, dispatch)
 };
   
 export default connect(null, mapDispatch)(Link);
