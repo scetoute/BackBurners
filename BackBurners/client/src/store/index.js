@@ -11,5 +11,5 @@ const reducer = combineReducers({ user, budget });
 
 const store = createStore(reducer, initialState, composeEnhancers(applyMiddleware(...middleWare)));
 
-export const server = 'http://192.168.1.71:8080';
+export const server = 'http://3.90.199.205:8080';
 export default store;
