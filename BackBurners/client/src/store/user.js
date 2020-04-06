@@ -10,34 +10,37 @@ let axiosConfig = {
   }
 }
 //ACTION FUNCTIONS
-const getUser = userId => ({ type: GETUSER, userId });
+const getUser = user => ({ type: GETUSER, user });
 const deleteUser = () => ({ type: DELETEUSER });
 
 //  THUNK CREATOR ACTIONS
 
 export const signup = (userObject) => dispatch => {
   axios.post(`${server}/auth/signup`, userObject, axiosConfig).then(r => {
-    alert(r)
-    //dispatch(getUser(r.data))
-  })
-}
-
-export const login = (email, passWord) => dispatch => {
-  axios.post(`${server}/auth/login`, {email, passWord}).then(r => {
+    console.log("signup", r.data)
+    alert("signup", r.data)
     dispatch(getUser(r.data))
   })
 }
 
+export const login = (email, passWord, nav, pushTok) => dispatch => {
+  axios.post(`${server}/auth/login`, {email, passWord, pushTok}).then(r => {
+    console.log("login", r.data)
+    dispatch(getUser(r.data))
+    nav.navigate('Home', { title: 'Home' });
+  })
+}
 
 //REDUCER
 
 export default (state = {}, action) => {
-    switch (action.type) {
-      case GETUSER:
-        return action.user;
-      case DELETEUSER:
-        return {};
-      default:
-        return state;
-    }
+  switch (action.type) {
+    case GETUSER:
+      console.log(action)
+      return action.user;
+    case DELETEUSER:
+      return {};
+    default:
+      return state;
   }
+}

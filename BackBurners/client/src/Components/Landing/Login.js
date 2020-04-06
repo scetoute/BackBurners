@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Text, View, Image, TextInput, KeyboardAvoidingView, Animated, Keyboard, Button } from 'react-native';
-
+import { login } from '../../store/user'
+import { bindActionCreators } from 'redux';
+import { Notifications } from 'expo'
 class Login extends Component {
     constructor(props) {
         super(props);
@@ -14,26 +16,31 @@ class Login extends Component {
     componentDidMount() {
         this.showKBSub = Keyboard.addListener('showKB', this.showKB);
         this.hideKBSub = Keyboard.addListener('hideKB', this.hideKB);
-      }
+    }
     
-      componentWillUnmount() {
+    componentWillUnmount() {
         this.showKBSub.remove();
         this.hideKBSub.remove();
-      }
-    
-      showKB = event => {
-        Animated.timing(this.imageHeight, {
-          duration: event.duration,
-          toValue: IMAGE_HEIGHT_SMALL,
-        }).start();
-      };
-    
-      hideKB = event => {
-        Animated.timing(this.imageHeight, {
-          duration: event.duration,
-          toValue: IMAGE_HEIGHT,
-        }).start();
-      };
+    }
+
+    showKB = event => {
+    Animated.timing(this.imageHeight, {
+        duration: event.duration,
+        toValue: IMAGE_HEIGHT_SMALL,
+    }).start();
+    };
+
+    hideKB = event => {
+    Animated.timing(this.imageHeight, {
+        duration: event.duration,
+        toValue: IMAGE_HEIGHT,
+    }).start();
+    };
+
+    handleSubmit = async () => {
+        let pushTok = await Notifications.getExpoPushTokenAsync();
+        this.props.login(this.state.email, this.state.password, this.props.navigation, pushTok)
+    }
 
     render() {
         return(
@@ -43,9 +50,7 @@ class Login extends Component {
                     <TextInput nativeID="passWd" onChangeText={currtext => this.setState({ password: currtext })} value={this.state.password} placeholder="PassWord"/>
                 </View>
                 <View>
-                    <Button title={`Login To Account`} onPress={() => { this.props.navigation.navigate('Home', { title: 'Home' }) }}>
-                        Sign Up !
-                    </Button>
+                    <Button title={`Login To Account`} onPress={() => { this.handleSubmit() }}/>
                 </View>
             </KeyboardAvoidingView>
         ); 
@@ -53,9 +58,9 @@ class Login extends Component {
 }
 
 const mapDispatch = dispatch => {
-    return {
-        
-    };
+    return bindActionCreators({
+        login
+    }, dispatch);
 };
   
 export default connect(null, mapDispatch)(Login);

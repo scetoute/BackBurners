@@ -1,9 +1,9 @@
 import React,{ Component } from 'react';
 import PlaidAuthenticator from 'react-native-plaid-link';
-import { View, Button} from 'react-native';
+import { View, Button, Text, KeyboardAvoidingView } from 'react-native';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux'
-import { sendTok } from '../../store/token'
+import { bindActionCreators } from 'redux';
+import { sendTok } from '../../store/token';
 class Link extends Component {
     state = {
         data: {},
@@ -33,16 +33,24 @@ class Link extends Component {
     }
 
     renderDetails() {
-        this.props.sendTok(this.state.data.metadata.public_token);
+        this.props.sendTok(this.state.data.metadata.public_token, this.props.user._id);
         alert(this.state.status)
         return(
             <View>
-                <Text>Setup Budget</Text>
-                <Button title={'Setup Your Budget'} onPress={() => this.props.navigation.navigate('BudgetSetUp', { title: 'BudgetSetup' })}>
-                    Set Up!
-                </Button>
+                <View>
+                    <Text>Setup Budget</Text>
+                    <Button title={'Setup Your Budget'} onPress={() => this.props.navigation.navigate('BudgetSetup', { title: 'BudgetSetup' })}>
+                        Set Up!
+                    </Button>
+                </View>
             </View>
         );
+    }
+}
+
+const mapStateToProps = state => {
+    return {
+        user: state.user
     }
 }
 
@@ -52,4 +60,4 @@ const mapDispatch = dispatch => {
     }, dispatch)
 };
   
-export default connect(null, mapDispatch)(Link);
+export default connect(mapStateToProps, mapDispatch)(Link);

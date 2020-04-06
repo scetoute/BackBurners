@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { View, Text, KeyboardAvoidingView, Button } from 'react-native';
 import { updateBudget } from '../../../store/budget'
+import { bindActionCreators } from 'redux';
+
 class BudgetSetup extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props )
         this.state = {}
     }
     render() {

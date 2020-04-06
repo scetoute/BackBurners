@@ -12,12 +12,12 @@ let axiosConfig = {
   }
 }
 
-export const sendTok = token => {
+export const sendTok = (token, userId) => {
   return async dispatch => {
     try {
-      const resp = await axios.post(`${server}/api/plaid/plaidExchange`,{public_token: token}, axiosConfig)
-      console.log(resp)
-      dispatch(sendPublicToken(resp.data));
+      const resp = await axios.post(`${server}/api/plaid/plaidExchange`,{public_token: token, id: userId}, axiosConfig)
+      console.log(resp.data)
+      //dispatch(sendPublicToken(resp.data));
     } catch (err) {
       console.log('Error sending public token: ', err.message);
     }

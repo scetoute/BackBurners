@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, TextInput, KeyboardAvoidingView, Animated, Keyboard } from 'react-native';
+import { View, TextInput, KeyboardAvoidingView, Animated, Keyboard, StyleSheet, Image, Platform } from 'react-native';
 import { Button } from 'react-native-paper';
 import { signup } from '../../store/user';
 import { bindActionCreators } from 'redux'
@@ -10,7 +10,7 @@ class SignUp extends Component {
         this.state = { 
             email: '', 
             password: '',
-            fullName: '',
+            name: '',
             phoneNumber: ''
         };
     }
@@ -42,8 +42,7 @@ class SignUp extends Component {
         const newUser = {
             email: this.state.email,
             passWord: this.state.password,
-            fullName: this.state.fullName,
-            phoneNumber: this.state.phoneNumber,
+            name: this.state.name,
             _id: Math.random().toString(36).substring(2, 9)
         }
         this.props.signup(newUser)
@@ -51,22 +50,78 @@ class SignUp extends Component {
     }
     render() {
         return(
-            <KeyboardAvoidingView>
-                <View>
-                    <TextInput nativeID="email" onChangeText={currtext => this.setState({ email: currtext })} value={this.state.email} placeholder="Email"/>
-                    <TextInput nativeID="passWd" onChangeText={currtext => this.setState({ password: currtext })} value={this.state.password} placeholder="PassWord"/>
-                    <TextInput nativeID="name" onChangeText={currtext => this.setState({ fullName: currtext })} value={this.state.fullName} placeholder="Full Name"/>
-                    <TextInput nativeID="phoneNumber" onChangeText={currtext => this.setState({ phoneNumber: currtext })} value={this.state.phoneNumber} placeholder="Phone Number"/>
+            <KeyboardAvoidingView style={styles.signupSection} keyboardVerticalOffset={Platform.OS === 'ios' ? 100 : 0}>
+                <View style={styles.inputField}>
+                    <Image style={styles.image} source={require('../../Images/personIcon.png')}/>
+                    <TextInput style={styles.text}  placeholder="Full Name"
+                    onChangeText={currtext => this.setState({ name: currtext })} value={this.state.name}/>
                 </View>
-                <View>
-                    <Button title={`Link Bank Account →`} onPress={() => { this.handleSubmit() }}>
+                <View style={styles.inputField}>
+                    <Image style={styles.image} source={require('../../Images/MailIcon.png')}/>
+                    <TextInput style={styles.text}  placeholder="Email" 
+                    onChangeText={currtext => this.setState({ email: currtext })} value={this.state.email}/>
+                </View>
+                <View style={styles.inputField}>
+                    <Image style={styles.image} source={require('../../Images/LockIcon.png')}/>
+                    <TextInput style={styles.text} secureTextEntry={true} placeholder="Password"
+                    onChangeText={currtext => this.setState({ password: currtext })} value={this.state.password}/>
+                </View>
+                {<View style={styles.buttonview}>
+                    <Button style={styles.button} title={`Link Bank Account →`} onPress={() => { this.handleSubmit() }}>
                         Sign Up !
                     </Button>
-                </View>
+                </View>}
             </KeyboardAvoidingView>
         ); 
     }
 }
+
+const styles = StyleSheet.create({
+    signupSection: {
+        flex:1,
+        backgroundColor: '#ffffff',
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0
+    },
+    inputField: {
+        //flex: 1,
+        justifyContent: "center",
+        //paddingTop: -35,
+        alignItems: 'center',
+        flexDirection: 'row',
+        //backgroundColor: '#000000',
+        height: 120
+    },
+    image: {
+        padding: 10,
+        margin: 5,
+    },
+    text: {
+        fontSize: 18,
+        borderBottomWidth: 2,
+        borderBottomColor: '#248841',
+        width: 300,
+        textAlign: 'center',
+        color: '#248841'
+    },
+    buttonview: {
+        alignContent: "center",
+        justifyContent: 'center',
+        backgroundColor: '#248841',
+        
+        color: '#ffffff',
+        width: 300,
+        height: 40,
+    },
+    button: {
+        position: 'absolute',
+        bottom: 0,
+        right: 0,
+        left: 0
+    }
+})
 
 const mapDispatchToProps = dispatch => {
     return bindActionCreators({

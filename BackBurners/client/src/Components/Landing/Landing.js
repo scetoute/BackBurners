@@ -1,37 +1,32 @@
 import React, { Component } from 'react';
-import { Text, View, Image, Button } from 'react-native';
-
+import { View, Image, Button, StyleSheet } from 'react-native';
+import { SignUp } from '../../index'
 class Landing extends Component {
     render() {
         return(
-            <View >
+            <View style={styles.LandingSection}>
                 <View >
-                    <View style={{padding: 10}}>
-                    <Button
-                        button
-                        text
-                        title={`Login`}
-                        onPress={() =>
-                            this.props.navigation.navigate('Login', { title: 'Login' })
-                        }
-                    >
-                    </Button>
-                    </View>
-                    <View style={{padding: 10}}>
-                <Button
-                    button
-                    text
-                    title={`SignUp`}
-                    onPress={() => 
-                        this.props.navigation.navigate('SignUp', { title: 'SignUp' })
-                    }
-                />
+                    <SignUp />
                 </View>
+                <View>
+                    {/*<Button title={`Login`} onPress={() => this.props.navigation.navigate('Login', { title: 'Login' })} />*/}
                 </View>
             </View>
         );
     }
 }
+
+const styles = StyleSheet.create({
+    loginButtonSection: {
+        position: 'absolute',
+        bottom: 0,
+        left: 0
+    },
+    LandingSection: {
+        justifyContent: 'center',
+        alignContent: 'center'
+    }
+})
 
 
 export default Landing;
