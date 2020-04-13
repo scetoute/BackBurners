@@ -51,16 +51,26 @@ export default class App extends Component {
 }
 
 const AuthenticationNavigator = createStackNavigator({
-  Landing: { screen: Landing },
-  Login: { screen: Login },
-  SignUp: { screen: SignUp },
-  Link: { screen: Link },
-  BudgetSetup: { screen: BudgetSetup },
+  Landing: { screen: Landing, navigationOptions: ({ navigation }) => ({
+    headerShown: false
+  }) },
+  Login: { screen: Login, navigationOptions: ({ navigation }) => ({
+    headerShown: false
+  }) },
+  SignUp: { screen: SignUp, navigationOptions: ({ navigation }) => ({
+    headerShown: false
+  }) },
+  Link: { screen: Link, navigationOptions: ({ navigation }) => ({
+    headerShown: false
+  }) },
+  BudgetSetup: { screen: BudgetSetup, navigationOptions: ({ navigation }) => ({
+    headerShown: false
+  }) },
  /* EditCategories: { screen: EditCategories },*/
 });
 
 const AppNavigator2 = createSwitchNavigator({
-  Auth: { screen: AuthenticationNavigator },
+  //Auth: { screen: AuthenticationNavigator },
   Main: { screen: Navbar }
 });
 

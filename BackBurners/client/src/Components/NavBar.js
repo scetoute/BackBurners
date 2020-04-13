@@ -4,54 +4,65 @@ import { HomeScreen } from './Home';
 import { ProfileScreen } from './Profile';
 import { ActivityScreen } from './Activity';
 import { SettingsScreen } from './Settings';
-import Icon from 'react-native-vector-icons/FontAwesome5'
+import { AnalyticsScreen } from './Analytics';
+import { Image } from 'react-native'
 
-const homeIcon = ({ tintColor }) => (
-    <Icon name="home" size={25} color={tintColor} />
+const ActivityIcon = ({ tintColor }) => (
+  <Image style={{}} source={require('../Images/NavBar/Activity.png')}/>
 );
 
-const profileIcon = ({ tintColor }) => (
-    <Icon name="user" size={25} color={tintColor} />
+const AnalyticsIcon = ({ tintColor }) => (
+  <Image style={{}} source={require('../Images/NavBar/Analytics.png')}/>
 );
 
-const settingsIcon = ({ tintColor }) => (
-    <Icon name="users-cog" size={25} color={tintColor} />
+const BellIcon = ({ tintColor }) => (
+  <Image source={require('../Images/NavBar/Bell.png')}/>
 );
 
-const activityIcon = ({ tintColor }) => (
-    <Icon name="chart-line" size={25} color={tintColor} />
+const ProfileIcon = ({ tintColor }) => (
+  <Image source={require('../Images/NavBar/Profile.png')}/>
+);
+
+const SettingsIcon = ({ tintColor }) => (
+  <Image source={require('../Images/NavBar/Settings.png')}/>
 );
 
 const Navbar = createMaterialBottomTabNavigator({
   Home: {
     screen: HomeScreen,
     navigationOptions: {
-      tabBarIcon: homeIcon
+      tabBarIcon: ActivityIcon
     }
   },
   Activity: {
     screen: ActivityScreen,
     navigationOptions: {
-      tabBarIcon: activityIcon
+      tabBarIcon: BellIcon
     }
   },
-  Settings: {
-    screen: SettingsScreen,
+  Analytics: {
+    screen: AnalyticsScreen,
     navigationOptions: {
-      tabBarIcon: settingsIcon
+      tabBarIcon: AnalyticsIcon
     }
   },
   Profile: {
     screen: ProfileScreen,
     navigationOptions: {
-      tabBarIcon: profileIcon
+      tabBarIcon: ProfileIcon
+    }
+  },
+  Settings: {
+    screen: SettingsScreen,
+    navigationOptions: {
+      tabBarIcon: SettingsIcon
     }
   }
   },{
   initialRouteName: 'Home',
   activeTintColor: 'red',
   inactiveTintColor: '#FFFFFF',
-  barStyle: { backgroundColor: 'yellow'}
+  barStyle: { backgroundColor: '#54C134'}
   }
 );
 

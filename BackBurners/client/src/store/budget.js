@@ -15,27 +15,27 @@ const getBudgetCreator = budget => ({ type: GETBUDGET, budget });
 const updateBudgetCreator = budget => ({ type: UPDATEBUDGET, budget });
 
 export const getBudget = userId => {
-    return async dispatch => {
-        try {
-            const resp = await axios.post(`${server}/api/budget/${userId}`,{public_token: token}, axiosConfig)
-            console.log("get budget", resp.data)
-            //dispatch(getBudgetCreator(resp.data))
-        } catch(err) {
-            console.log('Error getting budget: ', err.message);
-        }
+  return async dispatch => {
+    try {
+      const resp = await axios.post(`${server}/api/budget/${userId}`,{public_token: token}, axiosConfig)
+      console.log("get budget", resp.data)
+      //dispatch(getBudgetCreator(resp.data))
+    } catch(err) {
+      console.log('Error getting budget: ', err.message);
     }
+  }
 }
 
 export const updateBudget = budget => {
-    return async dispatch => {
-        try {
-            const resp = await axios.post(`${server}/api/budget`, {budget: budget}, axiosConfig)
-            console.log("update budget", resp.data)
-            //dispatch(updateBudgetCreator(resp.data))
-        } catch(err) {
-            console.log('Error updating budget: ', err.message);
-        }
+  return async dispatch => {
+  try {
+      const resp = await axios.post(`${server}/api/budget`, {budget: budget}, axiosConfig)
+      console.log("update budget", resp.data)
+      //dispatch(updateBudgetCreator(resp.data))
+    } catch(err) {
+      console.log('Error updating budget: ', err.message);
     }
+  }
 }
 
 const initialState = {};

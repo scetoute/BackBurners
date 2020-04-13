@@ -79,7 +79,8 @@ const styles = StyleSheet.create({
         top: 0,
         left: 0,
         right: 0,
-        height: height
+        height: height,
+        marginTop: 60
     },
     inputField: {
         flexDirection: 'row',
@@ -90,7 +91,8 @@ const styles = StyleSheet.create({
         borderBottomColor: '#248841',
         height: 40,
         margin: 10,
-        marginBottom: 60
+        marginBottom: 60,
+        paddingBottom: 10
     },
     image: {
         padding: 10,
