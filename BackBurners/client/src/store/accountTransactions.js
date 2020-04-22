@@ -11,14 +11,15 @@ const SETACCTTRANSDATA = 'SETACCTTRANSDATA';
 const CHANGETRANS = 'CHANGETRANS';
 
 // Action Creators
-const setAccTransData = data => ({ type: SETACCTTRANSDATA, data });
+export const setAccTransData = data => ({ type: SETACCTTRANSDATA, data });
 const changeTrans = transaction => ({ type: CHANGETRANS, transaction });
 
-export const getAccTransData = () => {
+export const getAccTransData = (id) => {
     return async dispatch => {
       try {
-        const res = await axios.get(`${server}/api/accTrans`);
-        //dispatch(setAccTransData(res.data));
+        const resp = await axios.get(`${server}/api/accTrans/${id}`, axiosConfig);
+        //console.log(resp)
+        dispatch(setAccTransData(resp.data));
       } catch (err) {
         console.log('Error fetching acct & trans data: ', err.message);
       }
@@ -28,8 +29,8 @@ export const getAccTransData = () => {
 export const updateAccTrans = newTrans => {
     return async dispatch => {
         try {
-            const res = await axios.put(`${server}/api/accTrans/${newTrans.id}`, newTrans);
-            //dispatch(changeTrans(res.data));
+            const resp = await axios.put(`${server}/api/accTrans/${newTrans.id}`, newTrans, axiosConfig);
+            //dispatch(changeTrans(resp.data));
         } catch (err) {
             console.log('Error updating transaction: ', err.message);
         }

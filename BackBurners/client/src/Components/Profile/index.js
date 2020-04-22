@@ -27,9 +27,8 @@ class Profile extends Component {
   }*/
 
   render() {
-    const { user } = this.props
+    const { user, accounts, transactions } = this.props
     const { photo} = this.state
-    user.name = 'John Doe'
     return(
       <ScrollView>
         <View>
@@ -39,16 +38,33 @@ class Profile extends Component {
           <Text style={styles.text}>{user.name}</Text>
         </View>
         <View style={styles.bottomView}>
-          <Text style={{fontSize: 18, color: '#248841', fontFamily: 'Arial', fontWeight: 'bold'}}>Bank Accounts</Text>
-          <ScrollView horizontal={true}>
-
-          </ScrollView>
-          <View>
-            <Text>Upcoming Bills</Text>
-            <ScrollView>
-
+          <View style={{flex: 1}}>
+            <Text style={{fontSize: 18, color: '#248841', fontFamily: 'Arial', fontWeight: 'bold', paddingTop: 10}}>Bank Accounts</Text>
+            <ScrollView style={styles.bankAccountSV} horizontal={true}>
+              {accounts.length > 0 ? accounts.map((account, ind) => {
+                return(
+                  <View key={ind} style={styles.myButton}>
+                    <Text onPress={() => alert(account.name)} key={ind} style={{textAlign: "center", color: 'white', fontWeight: 'bold'}}>{account.name}</Text>
+                  </View>
+                )
+              }) : null}
             </ScrollView>
+            <View>
+              <Text>Upcoming Bills</Text>
+              <ScrollView>
+                {transactions.length > 0 ? transactions.map((transaction, ind) => {
+                  if(transaction.type === 'standing order') {
+                    return(
+                      <View key={ind} style={styles.myButton}>
+                        <Text onPress={() => alert(account.name)} key={ind} style={{textAlign: "center", color: 'white', fontWeight: 'bold'}}>{account.name}</Text>
+                      </View>
+                    )
+                  }
+                }) : null}
+              </ScrollView>
+            </View>
           </View>
+          
         </View>
       </ScrollView>
     );
@@ -75,14 +91,31 @@ const styles = StyleSheet.create({
   bottomView: {
     backgroundColor: '#F1FFF1',
     flex: 1,
-    height: height - 246
+    paddingLeft: 30
+    //height: height - 246
+  },
+  bankAccountSV: {
+    paddingTop: 30,
+    paddingBottom: 30
+  },
+  myButton:{
+    marginRight: 40,
+    height: 100,
+    width: 100,  //The Width must be the same as the height
+    borderRadius:400, //Then Make the Border Radius twice the size of width or Height   
+    backgroundColor:'#80E380',
+    justifyContent: 'center',
+    alignItems: 'center'
+
   }
 })
 
 const mapState = state => {
-  alert(JSON.stringify(state))
+  alert(JSON.stringify(state.accTrans.trans))
   return {
-    user: state.user
+    user: state.user,
+    accounts: state.accTrans.accounts,
+    transactions: state.accTrans.trans
   };
 };
 

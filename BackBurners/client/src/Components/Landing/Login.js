@@ -30,22 +30,22 @@ class Login extends Component {
     showKB = event => {
     Animated.timing(this.imageHeight, {
         duration: event.duration,
-        toValue: IMAGE_HEIGHT_SMALL,
     }).start();
     };
 
     hideKB = event => {
     Animated.timing(this.imageHeight, {
         duration: event.duration,
-        toValue: IMAGE_HEIGHT,
     }).start();
     };
 
     handleSubmit = async () => {
-        if(this.state.email === '' || this.state.password === '') {
+        //alert(JSON.stringify(this.state))
+        //if(this.state.email.trim() == '' || this.state.password.trim() == '') {
+            //alert('inside')
             let pushTok = await Notifications.getExpoPushTokenAsync();
-            this.props.login(this.state.email, this.state.password, this.props.navigation, pushTok);    
-        }
+            this.props.login(this.state.email, this.state.password, this.props.navigation, pushTok);
+        //}
     }
 
     render() {

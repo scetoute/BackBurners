@@ -15,7 +15,7 @@ class Settings extends Component {
         <View style={styles.settingsView}>
           <Text style={styles.text}>
             <Image source={require('../../Images/Settings/Me.png')} style={styles.image}/>
-            <Text>{'\t' + '\t'}</Text> Me
+            <Text>{'\t' + '\t'}</Text> Me <Text style={{fontWeight:'normal'}}>{'\t\t\t\t\t\t' + user.name}</Text>
           </Text>
         </View>
         <View style={styles.settingsView}>
@@ -27,7 +27,7 @@ class Settings extends Component {
         <View style={styles.settingsView}>
           <Text style={styles.text}>
             <Image source={require('../../Images/Settings/Account.png')} style={styles.image}/>
-            <Text>{'\t' + '\t'}</Text>Account
+            <Text>{'\t' + '\t'}</Text>Account <Text style={{fontWeight:'normal'}}>{'\t\t\t\t' + user.email}</Text>
           </Text>
         </View>
         <View style={styles.settingsView}>

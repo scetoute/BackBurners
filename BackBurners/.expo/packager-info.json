@@ -1,9 +1,10 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 64096,
-  "expoServerNgrokUrl": "https://8j-u5r.bbridges11.backburners.exp.direct",
-  "packagerNgrokUrl": "https://packager.8j-u5r.bbridges11.backburners.exp.direct",
-  "ngrokPid": 64109
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null,
+  "webpackServerPort": null
 }

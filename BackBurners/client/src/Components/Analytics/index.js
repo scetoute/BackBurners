@@ -30,4 +30,4 @@ const AnalyticsConnect = connect(mapState,mapDispatch)(Analytics);
 
 export default AnalyticsConnect;
 
-export const AnalyticsScreen = createStackNavigator({ Home: { screen: AnalyticsConnect }});
+export const AnalyticsScreen = createStackNavigator({ Analytics: { screen: AnalyticsConnect }});
