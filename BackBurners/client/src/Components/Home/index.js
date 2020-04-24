@@ -59,16 +59,106 @@ class Home extends Component {
   }
 
   render() {
+    const arr = [];
     return(
-      <View>
-        <Text>$15.00</Text>
-        <Text>You have $15.00 in your budget</Text>
-        <Text>Congratulations! You have no outstanding bills</Text>
-        <Text>Your Netflix bill is coming up tomorrow</Text>
-      </View>
+        <View style={styles.background}>
+            <View style={styles.container}>
+                <View style={styles.circle}>
+                    {/*<View style={styles.circle_two}>*/}
+                        <Text style={styles.welcome}>Welcome back!</Text>
+                        <Text style={styles.balance}>$15.00</Text>
+                        <Text style={styles.budget}>You have $15.00 in your budget</Text>
+                        { arr.length > 0 ?   <Text style={styles.reminder}>Congratulations! You have no outstanding bills</Text>
+                            :<Text style={styles.reminder}>Your Netflix bill is coming up tomorrow</Text>
+                        }
+                        <Text style={styles.button}>Add Bill</Text>
+                    {/*</View>*/}
+                </View>
+            </View>
+        </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+
+background:{
+    backgroundColor: '#248841',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+},
+
+container: {
+
+    backgroundColor: '#BCFDC1',
+    width:350,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 400,
+},
+
+circle: {
+    backgroundColor: 'rgba(255,255,255,0.5)',
+    width: 350,
+    height: 400,
+    borderRadius: 350 / 2,
+    justifyContent: 'center',
+    alignItems: 'center',
+},
+
+circle_two: {
+    backgroundColor: 'rgba(255,255,255,0.5)',
+    width: 250,
+    height: 300,
+    borderRadius: 300 / 2,
+    // justifyContent: 'center',
+    alignItems: 'center',
+},
+
+welcome:{
+    fontSize:22,
+    color: '#248841',
+},
+
+balance:{
+    fontSize: 60,
+    color: '#248841',
+    paddingBottom: 30,
+    paddingTop: 40,
+    justifyContent: 'center',
+},
+
+budget:{
+    fontSize: 22,
+    color: '#248841',
+    paddingBottom: 15,
+    justifyContent: 'center',
+    fontWeight: 'bold',
+},
+reminder:{
+    color: '#248841',
+    paddingBottom: 10,
+    justifyContent: 'center',
+},
+button:{
+    color: '#248841',
+    width: 80,
+    height: 25,
+    backgroundColor: '#BCFDC1',
+    alignSelf: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlignVertical: "center",
+    borderRadius: 12,
+    marginTop:15,
+    fontSize: 22,
+},
+
+
+})
+
 
 const styles = StyleSheet.create({
 
