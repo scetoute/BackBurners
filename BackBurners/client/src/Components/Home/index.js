@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { Text, View } from 'react-native';
+import { Text, View, StyleSheet } from 'react-native';
 import { createStackNavigator } from 'react-navigation-stack';
 import { getAccTransData } from '../../store/accountTransactions';
 import { getLatestAccData } from '../../store/token'
@@ -61,11 +61,30 @@ class Home extends Component {
   render() {
     return(
       <View>
-        <Text>Home Screen</Text>
+        <Text>$15.00</Text>
+        <Text>You have $15.00 in your budget</Text>
+        <Text>Congratulations! You have no outstanding bills</Text>
+        <Text>Your Netflix bill is coming up tomorrow</Text>
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+
+  container: {
+
+    backgroundColor: '#D9F0D8',
+    width:500,
+    marginTop:100,
+    // height: 500,
+
+
+  }
+
+})
+
+
 
 const mapState = state => {
   return {
